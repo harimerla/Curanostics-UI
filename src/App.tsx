@@ -26,19 +26,22 @@ const App: React.FC = () => {
   useEffect(() => {
     try {
       const fetchResponse = async (query: string) => {
-        const response = await fetch("http://localhost:6600/query", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json", // Set the content type to JSON
-          },
-          body: JSON.stringify({
-            query:
-              // "Give me 5 outliers, anamolies or any insights from my input data. tell me about in one line for each",
-              // "Summaries should include key health indicators (e.g., trends, anomalies, high-risk areas)",
-              query,
-            // "give me an abstact on data insights",
-          }),
-        });
+        const response = await fetch(
+          process.env.REACT_APP_FETCH_API_URL || "",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", // Set the content type to JSON
+            },
+            body: JSON.stringify({
+              query:
+                // "Give me 5 outliers, anamolies or any insights from my input data. tell me about in one line for each",
+                // "Summaries should include key health indicators (e.g., trends, anomalies, high-risk areas)",
+                query,
+              // "give me an abstact on data insights",
+            }),
+          }
+        );
 
         // Await the parsed JSON response
         const info = await response.json();
