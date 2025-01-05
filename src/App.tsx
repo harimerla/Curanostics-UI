@@ -24,8 +24,6 @@ const App: React.FC = () => {
   const [anamolies, setanalomies] = React.useState<any>(null);
 
   useEffect(() => {
-    alert(process.env);
-    alert(process.env.REACT_APP_FETCH_API_URL);
     try {
       const fetchResponse = async (query: string) => {
         const response = await fetch("http://127.0.0.1:6660/query", {
